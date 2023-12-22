@@ -23,8 +23,6 @@ public class HomePage {
 
         WebElement allCategoriesLink = driver.findElement(By.id("gh-shop-see-all-center"));
         allCategoriesLink.click();
-
-        // Use the provided categoryName to dynamically locate and click the category link
         WebElement categoryLink = driver.findElement(By.xpath("//h3[@class='cat-title']/a[text()='" + categoryName + "']"));
 
         categoryLink.click();

@@ -34,11 +34,9 @@ public class SearchResultsPage {
     public int getNumberOfResults() {
         By searchResultsLocator = By.cssSelector("h1.srp-controls__count-heading span.BOLD");
 
-        // Wait for the search results count to be present
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement searchResultsCountElement = wait.until(ExpectedConditions.presenceOfElementLocated(searchResultsLocator));
 
-        // Extract the numeric value from the text (e.g., "43,000,000" becomes 43000000)
         String numericValue = searchResultsCountElement.getText().replaceAll("[^0-9]", "");
 
         return Integer.parseInt(numericValue);

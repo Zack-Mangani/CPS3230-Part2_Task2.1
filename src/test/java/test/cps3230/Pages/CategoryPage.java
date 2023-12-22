@@ -14,8 +14,13 @@ public class CategoryPage {
     }
 
     public String getHeaderofCategory() {
-        WebElement headerElement = driver.findElement(By.cssSelector("h1.title-banner__title"));
-        return headerElement.getText();
+        try {
+            WebElement headerElement = driver.findElement(By.cssSelector("h1.title-banner__title"));
+            return headerElement.getText();
+        } catch (NoSuchElementException e) {
+            WebElement headerElement = driver.findElement(By.cssSelector("span.b-pageheader__text"));
+            return headerElement.getText();
+        }
     }
 
     public int getProductCount() {
@@ -26,7 +31,6 @@ public class CategoryPage {
 
     public String getFirstProductLink() { //this method is both used in CategoryPage and SearchResultsPage
         try {
-            // Try to find the default product link
             WebElement defaultProductLink = driver.findElement(By.cssSelector("ul.b-list__items_nofooter li.s-item--large a.s-item__link"));
             String hrefValue = defaultProductLink.getAttribute("href");
             return hrefValue;
@@ -41,18 +45,13 @@ public class CategoryPage {
 
     public void clickOnFirstProduct() {
         try {
-            // Try to find the default product link
             WebElement defaultProductLink = driver.findElement(By.cssSelector("ul.b-list__items_nofooter li.s-item--large a.s-item__link"));
-
-            // If found, click on it
             defaultProductLink.click();
         } catch (NoSuchElementException e) {
-            // If not found, find and click the first product link from the alternative locator
             WebElement firstProductLink = driver.findElement(By.cssSelector("ul.srp-results li.s-item a.s-item__link"));
             firstProductLink.click();
         }
 
-        // Switch to the new tab (assuming it's the last opened tab)
         String parentWindowHandle = driver.getWindowHandle();
         for (String windowHandle : driver.getWindowHandles()) {
             if (!windowHandle.equals(parentWindowHandle)) {

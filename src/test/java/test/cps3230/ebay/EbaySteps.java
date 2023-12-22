@@ -14,7 +14,7 @@ import test.cps3230.Pages.SearchResultsPage;
 public class EbaySteps {
 
     private static WebDriver driver;
-    private String firstProductLinkHref; // Instance variable to store the href value
+    private String firstProductLinkHref;
 
     //private final WebDriver driver;
     private HomePage homePage;
@@ -49,8 +49,8 @@ public class EbaySteps {
 
     @Then("I should be taken to the {string} category") //  this arrange//
     public void iShouldBeTakenToTheCategory(String arg0) {
-        //String actualHeaderText = categoryPage.getHeaderofCategory();
-        //Assert.assertEquals( arg0, actualHeaderText);
+        String actualHeaderText = categoryPage.getHeaderofCategory();
+        Assert.assertEquals( arg0, actualHeaderText);
 
     }
 

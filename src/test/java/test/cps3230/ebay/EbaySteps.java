@@ -47,7 +47,7 @@ public class EbaySteps {
         homePage.clickOnCategory(arg0);
     }
 
-    @Then("I should be taken to the {string} category") //  this arrange//
+    @Then("I should be taken to the {string} category")
     public void iShouldBeTakenToTheCategory(String arg0) {
         String actualHeaderText = categoryPage.getHeaderofCategory();
         Assert.assertEquals( arg0, actualHeaderText);
